@@ -4,6 +4,8 @@
 
 **当前仅支持 Windows 10 / 11，打包目标为 Windows x64。** 扫描和结束进程依赖 Windows PowerShell；macOS、Linux 暂不支持。
 
+![Portlight 在 Windows 上的本地服务与端口管理界面](docs/images/portlight-windows.png)
+
 ## 能做什么
 
 - 扫描 TCP 监听端口，可在设置中显示 UDP 绑定；支持 IPv4 / IPv6，合并同一进程的重复地址绑定。
