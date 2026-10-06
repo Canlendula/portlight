@@ -1,0 +1,80 @@
+{
+  "name": "fast-port-check",
+  "version": "1.0.0",
+  "description": "A quiet little home for your localhost services.",
+  "author": "Portlight",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.cjs",
+  "packageManager": "pnpm@10.15.1",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:web": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build && node scripts/build-electron.mjs",
+    "start": "electron .",
+    "test": "tsx --test tests/*.test.ts",
+    "test:live": "tsx scripts/verify-windows.ts",
+    "pack": "pnpm build && electron-builder --win --dir",
+    "dist": "pnpm build && electron-builder --win portable",
+    "format": "prettier --write src electron/*.ts shared scripts tests *.json *.ts README.md",
+    "icons": "node scripts/make-icon.mjs"
+  },
+  "build": {
+    "appId": "local.portlight.desktop",
+    "productName": "Portlight",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "dist-electron/*.ps1"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signExecutable": false
+    },
+    "portable": {
+      "artifactName": "Portlight-${version}-win-x64.exe"
+    },
+    "electronDist": "node_modules/electron/dist"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild"
+    ]
+  },
+  "dependencies": {
+    "lucide-react": "^1.52.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.2",
+    "png-to-ico": "^3.0.2",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2"
+  }
+}

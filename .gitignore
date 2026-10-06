@@ -1,0 +1,25 @@
+# Dependencies and generated output (build/icon.ico is a source asset)
+node_modules/
+dist/
+dist-electron/
+release/
+.test-artifacts/
+coverage/
+.vite/
+.cache/
+*.tsbuildinfo
+*.log
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Editor, OS, and machine-specific shortcut files
+.idea/
+.vscode/
+*.lnk
+Thumbs.db
+Desktop.ini
+.DS_Store
